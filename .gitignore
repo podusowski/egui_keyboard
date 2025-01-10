@@ -1,3 +1,4 @@
 /target
+demo_android/java/app/build/
 .gradle
 jniLibs
