@@ -1,3 +1,5 @@
+use eframe::egui;
+
 #[cfg(target_os = "android")]
 #[no_mangle]
 fn android_main(
@@ -19,8 +21,20 @@ fn android_main(
     eframe::run_native(
         "Walkers",
         options,
-        Box::new(|cc| Ok(Box::new(demo::MyApp::new(cc.egui_ctx.clone())))),
+        Box::new(|cc| Ok(Box::new(MyApp::new()))),
     )?;
 
     Ok(())
+}
+
+struct MyApp;
+
+impl MyApp {
+    fn new() -> Self {
+        Self
+    }
+}
+
+impl eframe::App for MyApp {
+    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {}
 }
