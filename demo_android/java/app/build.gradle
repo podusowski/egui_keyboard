@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace "local.walkers"
+    namespace "local.egui-keyboard-demo"
     compileSdk 31
 
     defaultConfig {
