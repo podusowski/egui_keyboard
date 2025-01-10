@@ -18,11 +18,7 @@ fn android_main(
     options.event_loop_builder = Some(Box::new(move |builder| {
         builder.with_android_app(app);
     }));
-    eframe::run_native(
-        "Walkers",
-        options,
-        Box::new(|cc| Ok(Box::new(MyApp::new()))),
-    )?;
+    eframe::run_native("Walkers", options, Box::new(|_| Ok(Box::new(MyApp::new()))))?;
 
     Ok(())
 }
@@ -36,5 +32,5 @@ impl MyApp {
 }
 
 impl eframe::App for MyApp {
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {}
+    fn update(&mut self, _ctx: &egui::Context, _frame: &mut eframe::Frame) {}
 }
