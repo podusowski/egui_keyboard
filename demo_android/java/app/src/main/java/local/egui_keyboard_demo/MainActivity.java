@@ -1,4 +1,4 @@
-package local.walkers;
+package local.egui_keyboard_demo;
 
 import android.os.Bundle;
 import android.util.Log;

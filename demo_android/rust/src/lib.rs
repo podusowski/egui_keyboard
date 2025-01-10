@@ -10,7 +10,7 @@ fn android_main(
 
     android_logger::init_once(
         android_logger::Config::default()
-            .with_tag("egui-keyboard-demo")
+            .with_tag("egui_keyboard_demo")
             .with_max_level(log::LevelFilter::Info),
     );
     let mut options = NativeOptions::default();
