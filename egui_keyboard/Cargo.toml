@@ -1,5 +1,5 @@
 [package]
-name = "egui-keyboard"
+name = "egui_keyboard"
 version = "0.1.0"
 edition = "2021"
 
