@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace "local.egui-keyboard-demo"
+    namespace "local.egui_keyboard_demo"
     compileSdk 31
 
     defaultConfig {
