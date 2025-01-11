@@ -1,4 +1,6 @@
 /target
 demo_android/java/app/build/
 .gradle
+.idea
+local.properties
 jniLibs
