@@ -9,5 +9,7 @@ apk: jni
 
 run-on-device: jni
 	cd java && ./gradlew installDebug
+	adb logcat -c
 	adb shell am start -n local.egui_keyboard_demo/.MainActivity
-	adb logcat -v color -s egui_keyboard_demo RustStdoutStderr
+	#adb logcat -v color -s egui_keyboard_demo RustStdoutStderr
+	adb logcat -v color

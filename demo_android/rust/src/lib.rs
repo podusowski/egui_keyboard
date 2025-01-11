@@ -11,7 +11,7 @@ fn android_main(
     android_logger::init_once(
         android_logger::Config::default()
             .with_tag("egui_keyboard_demo")
-            .with_max_level(log::LevelFilter::Info),
+            .with_max_level(log::LevelFilter::Debug),
     );
     let mut options = NativeOptions::default();
     options.renderer = Renderer::Wgpu;
@@ -32,5 +32,7 @@ impl MyApp {
 }
 
 impl eframe::App for MyApp {
-    fn update(&mut self, _ctx: &egui::Context, _frame: &mut eframe::Frame) {}
+    fn update(&mut self, _ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        log::info!("Hello, Android!");
+    }
 }
