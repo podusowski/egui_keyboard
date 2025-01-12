@@ -4,3 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+android_clipboard = "0.1.0"
+egui = "0.30.0"
