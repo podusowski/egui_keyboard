@@ -1,4 +1,4 @@
-use eframe::egui;
+use eframe::egui::{self, CentralPanel};
 
 #[cfg(target_os = "android")]
 #[no_mangle]
@@ -21,16 +21,24 @@ fn android_main(
     Ok(())
 }
 
-struct MyApp;
+struct MyApp {
+    text: String,
+}
 
 impl MyApp {
     fn new() -> Self {
-        Self
+        Self {
+            text: "edit me".to_string(),
+        }
     }
 }
 
 impl eframe::App for MyApp {
     fn update(&mut self, _ctx: &egui::Context, _frame: &mut eframe::Frame) {
         log::info!("Hello, Android!");
+        CentralPanel::default().show(_ctx, |ui| {
+            ui.heading("egui keyboard demo");
+            ui.text_edit_singleline(&mut self.text);
+        });
     }
 }
