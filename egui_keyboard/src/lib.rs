@@ -204,6 +204,11 @@ impl Keyboard {
                     self.focus_back_to_input_widget(ctx);
                 }
             }
+
+            // Prevent native keyboard from showing up.
+            ctx.output_mut(|output| {
+                output.ime = None;
+            });
         }
     }
 
