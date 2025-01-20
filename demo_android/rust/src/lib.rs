@@ -1,5 +1,3 @@
-use demo::MyApp;
-
 #[cfg(target_os = "android")]
 #[no_mangle]
 fn android_main(
@@ -18,7 +16,7 @@ fn android_main(
     eframe::run_native(
         "egui keyboard demo",
         options,
-        Box::new(|_| Ok(Box::new(MyApp::new()))),
+        Box::new(|_| Ok(Box::new(demo::MyApp::default()))),
     )?;
 
     Ok(())

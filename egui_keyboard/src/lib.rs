@@ -186,7 +186,7 @@ impl Keyboard {
 
                     for row in layout.iter() {
                         ui.columns(row.len(), |columns| {
-                            for (n, key) in row.into_iter().enumerate() {
+                            for (n, key) in row.iter().enumerate() {
                                 let ui = &mut columns[n];
                                 ui.vertical_centered_justified(|ui| match key {
                                     Key::Text(text) => self.generic_key(ui, text),
@@ -282,6 +282,7 @@ impl Keyboard {
 }
 
 /// Trim the text to the maximum length, and add ellipsis if needed.
+#[cfg(target_os = "android")]
 fn trim_text(text: &str, max_length: usize) -> String {
     let mut result = String::new();
     for (n, c) in text.chars().enumerate() {

@@ -6,8 +6,8 @@ pub struct MyApp {
     keyboard: Keyboard,
 }
 
-impl MyApp {
-    pub fn new() -> Self {
+impl Default for MyApp {
+    fn default() -> Self {
         Self {
             text: "edit me".to_string(),
             keyboard: Keyboard::default(),
