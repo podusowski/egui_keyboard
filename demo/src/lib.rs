@@ -1,5 +1,5 @@
-use egui_keyboard::Keyboard;
 use eframe::egui::{self, CentralPanel};
+use egui_keyboard::Keyboard;
 
 struct MyApp {
     text: String,
