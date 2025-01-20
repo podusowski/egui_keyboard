@@ -1,13 +1,13 @@
 use eframe::egui::{self, CentralPanel};
 use egui_keyboard::Keyboard;
 
-struct MyApp {
+pub struct MyApp {
     text: String,
     keyboard: Keyboard,
 }
 
 impl MyApp {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self {
             text: "edit me".to_string(),
             keyboard: Keyboard::default(),

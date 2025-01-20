@@ -1,3 +1,4 @@
+use demo::MyApp;
 use eframe::egui::{self, CentralPanel};
 
 #[cfg(target_os = "android")]
