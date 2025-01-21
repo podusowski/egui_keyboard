@@ -10,6 +10,7 @@ android_logger = "0.14"
 eframe = { version = "0.30", features = ["wgpu", "android-game-activity"] }
 egui-winit = "0.30"
 egui_keyboard = { path = "../../egui_keyboard" }
+demo = { path = "../../demo" }
 
 [lib]
 name = "main"
