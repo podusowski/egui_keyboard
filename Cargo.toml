@@ -1,5 +1,5 @@
 [workspace]
-members = ["egui_keyboard", "demo_android/rust", "demo"]
+members = ["egui_keyboard", "demo_android/rust", "demo", "demo_native"]
 resolver = "2"
 
 [workspace.package]
