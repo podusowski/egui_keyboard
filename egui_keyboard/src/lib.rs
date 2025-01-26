@@ -220,12 +220,14 @@ impl Keyboard {
         }
     }
 
+    /// Remember which widget had focus before the keyboard was shown.
     fn remember_input_widget(&mut self, ctx: &Context) {
         if ctx.wants_keyboard_input() {
             self.input_widget = ctx.memory(|memory| memory.focused());
         }
     }
 
+    /// Focus back to the previously focused widget.
     fn focus_back_to_input_widget(&mut self, ctx: &Context) {
         if let Some(focus) = self.input_widget {
             ctx.memory_mut(|memory| memory.request_focus(focus));
