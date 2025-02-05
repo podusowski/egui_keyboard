@@ -1,8 +1,9 @@
-use eframe::egui::{self, CentralPanel};
+use eframe::egui::{self, CentralPanel, Window};
 use egui_keyboard::Keyboard;
 
 pub struct MyApp {
     text: String,
+    text2: String,
     keyboard: Keyboard,
 }
 
@@ -10,6 +11,7 @@ impl Default for MyApp {
     fn default() -> Self {
         Self {
             text: "edit me".to_string(),
+            text2: "edit me".to_string(),
             keyboard: Keyboard::default(),
         }
     }
@@ -21,6 +23,12 @@ impl eframe::App for MyApp {
             self.keyboard.pump_events(ctx);
             ui.heading("egui keyboard demo");
             ui.text_edit_singleline(&mut self.text);
+
+            Window::new("Hello").show(ui.ctx(), |ui| {
+                ui.label("it is a window");
+                ui.text_edit_singleline(&mut self.text2);
+            });
+
             self.keyboard.show(ctx);
         });
     }
