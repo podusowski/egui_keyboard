@@ -22,14 +22,6 @@ pub struct Keyboard {
     needed: u32,
 }
 
-/// Default egui's `Frame` has a padding around elements. We don't want that.
-pub fn frame(ctx: &egui::Context) -> Frame {
-    Frame {
-        fill: ctx.style().visuals.panel_fill,
-        ..Default::default()
-    }
-}
-
 fn button(text: &str) -> Button {
     let text = WidgetText::from(text).heading();
     Button::new(text).min_size(Vec2::new(10., 40.))
@@ -164,7 +156,7 @@ impl Keyboard {
 
         if self.keyboard_input_needed(ctx) {
             let response = Window::new("Keyboard")
-                .frame(frame(ctx))
+                .frame(Frame::none())
                 .collapsible(false)
                 .resizable(false)
                 .title_bar(false)
