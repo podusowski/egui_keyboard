@@ -1,8 +1,8 @@
 //! Virtual keyboard for touch screens.
 
 use egui::{
-    pos2, vec2, Align2, Button, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui, Vec2,
-    WidgetText, Window,
+    pos2, vec2, Align2, AreaState, Button, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui,
+    Vec2, WidgetText, Window,
 };
 use std::collections::VecDeque;
 
@@ -278,13 +278,21 @@ impl Keyboard {
     }
 }
 
+/// Move `area` out of the way of `what`.
+fn move_area_out_of(area: &mut AreaState, what: &Rect) {
+    let area_rect = area.rect();
+    if area_rect.max.y > what.min.y {
+        area.set_left_top_pos(pos2(area_rect.left(), what.min.y - area_rect.height()));
+    }
+}
+
 fn make_room_for(ctx: &Context, what: &Rect) {
     ctx.memory_mut(|memory| {
         let visible_layers = memory.areas().visible_layer_ids();
         for layer_id in visible_layers {
-            let area = memory.areas_mut().get_mut(layer_id.id).unwrap();
-            area.set_left_top_pos(pos2(0., 0.));
-            //area.rect = area.rect.translate(vec2(0., -200.));
+            if let Some(area) = memory.areas_mut().get_mut(layer_id.id) {
+                move_area_out_of(area, what);
+            }
         }
     });
 }
