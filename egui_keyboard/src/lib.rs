@@ -156,7 +156,7 @@ impl Keyboard {
 
         if self.keyboard_input_needed(ctx) {
             let response = Window::new("Keyboard")
-                .frame(Frame::none())
+                .frame(Frame::NONE)
                 .collapsible(false)
                 .resizable(false)
                 .title_bar(false)
