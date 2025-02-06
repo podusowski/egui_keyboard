@@ -1,7 +1,8 @@
 //! Virtual keyboard for touch screens.
 
 use egui::{
-    vec2, Align2, Button, Context, Event, Frame, Id, Modifiers, Order, Ui, Vec2, WidgetText, Window,
+    pos2, vec2, Align2, Button, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui, Vec2,
+    WidgetText, Window,
 };
 use std::collections::VecDeque;
 
@@ -191,6 +192,8 @@ impl Keyboard {
                 });
 
             if let Some(response) = response {
+                make_room_for(ctx, &response.response.rect);
+                //dbg!(response.response.rect);
                 if response.response.contains_pointer() {
                     // Make sure Egui still thinks that we need the keyboard in the next frame.
                     self.focus_back_to_input_widget(ctx);
@@ -273,6 +276,17 @@ impl Keyboard {
 
         needed
     }
+}
+
+fn make_room_for(ctx: &Context, what: &Rect) {
+    ctx.memory_mut(|memory| {
+        let visible_layers = memory.areas().visible_layer_ids();
+        for layer_id in visible_layers {
+            let area = memory.areas_mut().get_mut(layer_id.id).unwrap();
+            area.set_left_top_pos(pos2(0., 0.));
+            //area.rect = area.rect.translate(vec2(0., -200.));
+        }
+    });
 }
 
 /// Trim the text to the maximum length, and add ellipsis if needed.
