@@ -1,7 +1,8 @@
 //! Virtual keyboard for touch screens.
 
 use egui::{
-    vec2, Align2, Button, Context, Event, Frame, Id, Modifiers, Order, Ui, Vec2, WidgetText, Window,
+    vec2, Align2, Button, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui, Vec2, WidgetText,
+    Window,
 };
 use std::collections::VecDeque;
 
@@ -148,6 +149,30 @@ impl Keyboard {
     /// created, otherwise the key presses will be ignored.
     pub fn pump_events(&mut self, ctx: &Context) {
         ctx.input_mut(|input| input.events.extend(std::mem::take(&mut self.events)));
+    }
+
+    /// Area which is free from the keyboard. This is useful when you want to constrain a window to
+    /// the area which is not covered by the keyboard.
+    ///
+    /// # Examples
+    ///
+    /// ```no_run
+    /// # egui::__run_test_ctx(|ctx| {
+    /// # let keyboard = egui_keyboard::Keyboard::default();
+    /// egui::Window::new("Hello")
+    ///   .constrain_to(keyboard.safe_rect(ctx))
+    ///   .show(ctx, |ui| {
+    ///      ui.label("it is a window");
+    ///   });
+    /// # });
+    /// ```
+    pub fn safe_rect(&self, ctx: &Context) -> Rect {
+        let screen_rect = ctx.screen_rect();
+        if self.needed == 0 {
+            screen_rect
+        } else {
+            Rect::from_min_max(screen_rect.min, screen_rect.max - vec2(0., 200.))
+        }
     }
 
     /// Shows the virtual keyboard if needed.
