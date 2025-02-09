@@ -24,10 +24,12 @@ impl eframe::App for MyApp {
             ui.heading("egui keyboard demo");
             ui.text_edit_singleline(&mut self.text);
 
-            Window::new("Hello").show(ui.ctx(), |ui| {
-                ui.label("it is a window");
-                ui.text_edit_singleline(&mut self.text2);
-            });
+            Window::new("Hello")
+                .constrain_to(self.keyboard.safe_rect(&ctx))
+                .show(ui.ctx(), |ui| {
+                    ui.label("it is a window");
+                    ui.text_edit_singleline(&mut self.text2);
+                });
 
             self.keyboard.show(ctx);
         });

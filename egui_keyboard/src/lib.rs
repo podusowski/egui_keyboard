@@ -151,6 +151,30 @@ impl Keyboard {
         ctx.input_mut(|input| input.events.extend(std::mem::take(&mut self.events)));
     }
 
+    /// Area which is free from the keyboard. This is useful when you want to constrain a window to
+    /// the area which is not covered by the keyboard.
+    ///
+    /// # Examples
+    ///
+    /// ```no_run
+    /// # egui::__run_test_ctx(|ctx| {
+    /// # let keyboard = egui_keyboard::Keyboard::default();
+    /// egui::Window::new("Hello")
+    ///   .constrain_to(keyboard.safe_rect(ctx))
+    ///   .show(ctx, |ui| {
+    ///      ui.label("it is a window");
+    ///   });
+    /// # });
+    /// ```
+    pub fn safe_rect(&self, ctx: &Context) -> Rect {
+        let screen_rect = ctx.screen_rect();
+        if self.needed == 0 {
+            screen_rect
+        } else {
+            Rect::from_min_max(screen_rect.min, screen_rect.max - vec2(0., 200.))
+        }
+    }
+
     /// Shows the virtual keyboard if needed.
     pub fn show(&mut self, ctx: &Context) {
         self.remember_input_widget(ctx);
@@ -192,7 +216,7 @@ impl Keyboard {
                 });
 
             if let Some(response) = response {
-                make_room_for(ctx, &response.response.rect);
+                //make_room_for(ctx, &response.response.rect);
                 //dbg!(response.response.rect);
                 if response.response.contains_pointer() {
                     // Make sure Egui still thinks that we need the keyboard in the next frame.
@@ -278,24 +302,24 @@ impl Keyboard {
     }
 }
 
-/// Move `area` out of the way of `what`.
-fn move_area_out_of(area: &mut AreaState, what: &Rect) {
-    let area_rect = area.rect();
-    if area_rect.max.y > what.min.y {
-        area.set_left_top_pos(pos2(area_rect.left(), what.min.y - area_rect.height()));
-    }
-}
-
-fn make_room_for(ctx: &Context, what: &Rect) {
-    ctx.memory_mut(|memory| {
-        let visible_layers = memory.areas().visible_layer_ids();
-        for layer_id in visible_layers {
-            if let Some(area) = memory.areas_mut().get_mut(layer_id.id) {
-                move_area_out_of(area, what);
-            }
-        }
-    });
-}
+///// Move `area` out of the way of `what`.
+//fn move_area_out_of(area: &mut AreaState, what: &Rect) {
+//    let area_rect = area.rect();
+//    if area_rect.max.y > what.min.y {
+//        area.set_left_top_pos(pos2(area_rect.left(), what.min.y - area_rect.height()));
+//    }
+//}
+//
+//fn make_room_for(ctx: &Context, what: &Rect) {
+//    ctx.memory_mut(|memory| {
+//        let visible_layers = memory.areas().visible_layer_ids();
+//        for layer_id in visible_layers {
+//            if let Some(area) = memory.areas_mut().get_mut(layer_id.id) {
+//                move_area_out_of(area, what);
+//            }
+//        }
+//    });
+//}
 
 /// Trim the text to the maximum length, and add ellipsis if needed.
 #[cfg(target_os = "android")]
