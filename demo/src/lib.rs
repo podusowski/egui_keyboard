@@ -25,7 +25,7 @@ impl eframe::App for MyApp {
             ui.text_edit_singleline(&mut self.text);
 
             Window::new("Hello")
-                .constrain_to(self.keyboard.safe_rect(&ctx))
+                .constrain_to(self.keyboard.safe_rect(ctx))
                 .show(ui.ctx(), |ui| {
                     ui.label("it is a window");
                     ui.text_edit_singleline(&mut self.text2);
