@@ -27,7 +27,7 @@ impl eframe::App for MyApp {
             Window::new("Hello")
                 .constrain_to(self.keyboard.safe_rect(ctx))
                 .show(ui.ctx(), |ui| {
-                    ui.label("it is a window");
+                    ui.label("This window is constrained to the \"safe\" area, which is not covered by the keyboard.");
                     ui.text_edit_singleline(&mut self.text2);
                 });
 
