@@ -1,3 +1,7 @@
+# Keyboard for Egui
+
+![made in Europe](https://img.shields.io/badge/made_in-Europe-blue)
+
 Simple (and quite brutal) replacement for a native Android keyboard for Egui.
 
 ## Why?
