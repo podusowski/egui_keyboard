@@ -1,5 +1,7 @@
 #![doc = include_str!("../../README.md")]
 
+mod layouts;
+
 use egui::{
     vec2, Align2, Button, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui, Vec2, WidgetText,
     Window,
@@ -26,122 +28,6 @@ pub struct Keyboard {
 fn button(text: &str) -> Button {
     let text = WidgetText::from(text).heading();
     Button::new(text).min_size(Vec2::new(10., 40.))
-}
-
-mod layouts {
-    use super::Key;
-
-    pub fn qwerty() -> Vec<Vec<Key>> {
-        vec![
-            vec![
-                Key::Text("1"),
-                Key::Text("2"),
-                Key::Text("3"),
-                Key::Text("4"),
-                Key::Text("5"),
-                Key::Text("6"),
-                Key::Text("7"),
-                Key::Text("8"),
-                Key::Text("9"),
-                Key::Text("0"),
-            ],
-            vec![
-                Key::Text("q"),
-                Key::Text("w"),
-                Key::Text("e"),
-                Key::Text("r"),
-                Key::Text("t"),
-                Key::Text("y"),
-                Key::Text("u"),
-                Key::Text("i"),
-                Key::Text("o"),
-                Key::Text("p"),
-            ],
-            vec![
-                Key::Text("a"),
-                Key::Text("s"),
-                Key::Text("d"),
-                Key::Text("f"),
-                Key::Text("g"),
-                Key::Text("h"),
-                Key::Text("j"),
-                Key::Text("k"),
-                Key::Text("l"),
-                Key::Text(":"),
-            ],
-            vec![
-                Key::Upper,
-                Key::Text("z"),
-                Key::Text("x"),
-                Key::Text("c"),
-                Key::Text("v"),
-                Key::Text("b"),
-                Key::Text("n"),
-                Key::Text("m"),
-                Key::Text(","),
-                Key::Text("."),
-                Key::Text("/"),
-                Key::Backspace,
-            ],
-            vec![Key::Text(" ")],
-        ]
-    }
-
-    pub fn qwerty_upper() -> Vec<Vec<Key>> {
-        vec![
-            vec![
-                Key::Text("!"),
-                Key::Text("@"),
-                Key::Text("#"),
-                Key::Text("$"),
-                Key::Text("%"),
-                Key::Text("^"),
-                Key::Text("&"),
-                Key::Text("*"),
-                Key::Text("("),
-                Key::Text(")"),
-            ],
-            vec![
-                Key::Text("Q"),
-                Key::Text("W"),
-                Key::Text("E"),
-                Key::Text("R"),
-                Key::Text("T"),
-                Key::Text("Y"),
-                Key::Text("U"),
-                Key::Text("I"),
-                Key::Text("O"),
-                Key::Text("P"),
-            ],
-            vec![
-                Key::Text("A"),
-                Key::Text("S"),
-                Key::Text("D"),
-                Key::Text("F"),
-                Key::Text("G"),
-                Key::Text("H"),
-                Key::Text("J"),
-                Key::Text("K"),
-                Key::Text("L"),
-                Key::Text(";"),
-            ],
-            vec![
-                Key::Upper,
-                Key::Text("Z"),
-                Key::Text("X"),
-                Key::Text("C"),
-                Key::Text("V"),
-                Key::Text("B"),
-                Key::Text("N"),
-                Key::Text("M"),
-                Key::Text("<"),
-                Key::Text(">"),
-                Key::Text("?"),
-                Key::Backspace,
-            ],
-            vec![Key::Text(" ")],
-        ]
-    }
 }
 
 impl Keyboard {
