@@ -27,8 +27,13 @@ pub struct Keyboard {
     last_rect: Rect,
 }
 
-fn button(text: &str) -> Button {
+fn heading_button(text: &str) -> Button {
     let text = WidgetText::from(text).heading();
+    Button::new(text).frame(false).min_size(Vec2::new(10., 40.))
+}
+
+fn small_button(text: &str) -> Button {
+    let text = WidgetText::from(text);
     Button::new(text).frame(false).min_size(Vec2::new(10., 40.))
 }
 
@@ -136,7 +141,13 @@ impl Keyboard {
 
     fn clipboard_button(&mut self, ui: &mut Ui) {
         if let Some(text) = clipboard::get_text() {
-            self.key(ui, &trim_text(&text, 20), Event::Text(text.to_string()));
+            if ui.add(small_button(&trim_text(&text, 20))).clicked() {
+                let event = Event::Text(text.to_string());
+                self.events.push_back(event);
+                self.focus_back_to_input_widget(ui.ctx());
+            }
+
+            //self.key(ui, &trim_text(&text, 20), Event::Text(text.to_string()));
             ui.separator();
         }
     }
@@ -156,14 +167,14 @@ impl Keyboard {
     }
 
     fn key(&mut self, ui: &mut Ui, text: &str, event: Event) {
-        if ui.add(button(text)).clicked() {
+        if ui.add(heading_button(text)).clicked() {
             self.events.push_back(event);
             self.focus_back_to_input_widget(ui.ctx());
         }
     }
 
     fn upper_layout_key(&mut self, ui: &mut Ui) {
-        if ui.add(button("⏶")).clicked() {
+        if ui.add(heading_button("⏶")).clicked() {
             self.upper = !self.upper;
             self.focus_back_to_input_widget(ui.ctx());
         }
