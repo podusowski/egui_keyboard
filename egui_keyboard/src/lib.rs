@@ -66,11 +66,15 @@ impl Keyboard {
     /// ```
     pub fn safe_rect(&self, ctx: &Context) -> Rect {
         let screen_rect = ctx.screen_rect();
-        if self.needed == 0 {
-            screen_rect
-        } else {
-            Rect::from_min_max(screen_rect.min, screen_rect.max - vec2(0., 200.))
-        }
+        Rect::from_min_max(
+            screen_rect.min,
+            screen_rect.max - vec2(0., self.last_rect.height()),
+        )
+        //if self.needed == 0 {
+        //    screen_rect
+        //} else {
+        //    Rect::from_min_max(screen_rect.min, screen_rect.max - vec2(0., 200.))
+        //}
     }
 
     /// Shows the virtual keyboard if needed.
