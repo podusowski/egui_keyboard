@@ -5,5 +5,6 @@ pub(crate) fn get_text() -> Option<String> {
 
 #[cfg(not(target_os = "android"))]
 pub(crate) fn get_text() -> Option<String> {
-    None
+    let mut clipboard = arboard::Clipboard::new().ok()?;
+    clipboard.get_text().ok()
 }

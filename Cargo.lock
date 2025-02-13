@@ -1067,6 +1067,7 @@ name = "egui_keyboard"
 version = "0.1.0"
 dependencies = [
  "android_clipboard",
+ "arboard",
  "egui 0.31.0",
 ]
 
