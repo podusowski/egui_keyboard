@@ -15,6 +15,7 @@ enum Key {
     Upper,
 }
 
+#[derive(Default)]
 pub struct Keyboard {
     input_widget: Option<Id>,
     events: VecDeque<Event>,
@@ -39,16 +40,6 @@ fn small_button(text: &str) -> Button {
 }
 
 impl Keyboard {
-    pub fn new() -> Self {
-        Self {
-            input_widget: None,
-            events: Default::default(),
-            upper: false,
-            needed: 0,
-            last_rect: None,
-        }
-    }
-
     /// Inject text events into Egui context. This function needs to be called before any widget is
     /// created, otherwise the key presses will be ignored.
     pub fn pump_events(&mut self, ctx: &Context) {
@@ -62,7 +53,7 @@ impl Keyboard {
     ///
     /// ```no_run
     /// # egui::__run_test_ctx(|ctx| {
-    /// # let keyboard = egui_keyboard::Keyboard::new();
+    /// # let keyboard = egui_keyboard::Keyboard::default();
     /// egui::Window::new("Hello")
     ///   .constrain_to(keyboard.safe_rect(ctx))
     ///   .show(ctx, |ui| {
