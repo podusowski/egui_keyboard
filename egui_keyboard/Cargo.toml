@@ -5,5 +5,5 @@ edition = "2021"
 
 [dependencies]
 android_clipboard = "0.1.0"
-arboard = { version = "3.4.1", default-features = true }
+arboard = { version = "3.4.1", default-features = false }
 egui.workspace = true
