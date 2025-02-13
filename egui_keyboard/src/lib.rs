@@ -76,11 +76,6 @@ impl Keyboard {
             screen_rect.min,
             screen_rect.max - vec2(0., self.last_rect.height()),
         )
-        //if self.needed == 0 {
-        //    screen_rect
-        //} else {
-        //    Rect::from_min_max(screen_rect.min, screen_rect.max - vec2(0., 200.))
-        //}
     }
 
     /// Shows the virtual keyboard if needed.
@@ -147,9 +142,6 @@ impl Keyboard {
                 self.events.push_back(event);
                 self.focus_back_to_input_widget(ui.ctx());
             }
-
-            //self.key(ui, &trim_text(&text, 20), Event::Text(text.to_string()));
-            ui.separator();
         }
     }
 
