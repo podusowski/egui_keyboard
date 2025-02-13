@@ -125,6 +125,8 @@ impl Keyboard {
             ctx.output_mut(|output| {
                 output.ime = None;
             });
+        } else {
+            self.last_rect = Rect::NOTHING;
         }
     }
 
