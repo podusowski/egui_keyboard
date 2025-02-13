@@ -4,8 +4,8 @@ mod clipboard;
 mod layouts;
 
 use egui::{
-    vec2, Align2, Button, Color32, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui, Vec2,
-    WidgetText, Window,
+    vec2, Align2, Button, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui, Vec2, WidgetText,
+    Window,
 };
 use std::collections::VecDeque;
 
