@@ -24,6 +24,7 @@ pub struct Keyboard {
     /// hysteresis to avoid flickering.
     needed: u32,
 
+    /// Last rect where the keyboard was rendered.
     last_rect: Rect,
 }
 
