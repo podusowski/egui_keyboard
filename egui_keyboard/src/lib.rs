@@ -4,8 +4,8 @@ mod clipboard;
 mod layouts;
 
 use egui::{
-    vec2, Align2, Button, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui, Vec2, WidgetText,
-    Window,
+    vec2, Align2, Button, Color32, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui, Vec2,
+    WidgetText, Window,
 };
 use std::collections::VecDeque;
 
@@ -28,7 +28,7 @@ pub struct Keyboard {
 
 fn button(text: &str) -> Button {
     let text = WidgetText::from(text).heading();
-    Button::new(text).min_size(Vec2::new(10., 40.))
+    Button::new(text).frame(false).min_size(Vec2::new(10., 40.))
 }
 
 impl Keyboard {
@@ -68,7 +68,7 @@ impl Keyboard {
 
         if self.keyboard_input_needed(ctx) {
             let response = Window::new("Keyboard")
-                .frame(Frame::NONE)
+                .frame(Frame::NONE.fill(ctx.style().visuals.extreme_bg_color))
                 .collapsible(false)
                 .resizable(false)
                 .title_bar(false)
