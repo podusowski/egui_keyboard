@@ -15,7 +15,6 @@ enum Key {
     Upper,
 }
 
-#[derive(Default)]
 pub struct Keyboard {
     input_widget: Option<Id>,
     events: VecDeque<Event>,
@@ -24,6 +23,8 @@ pub struct Keyboard {
     /// How much keyboard is needed. It's a number so we can implement this as some sort of
     /// hysteresis to avoid flickering.
     needed: u32,
+
+    last_rect: Rect,
 }
 
 fn button(text: &str) -> Button {
@@ -32,6 +33,16 @@ fn button(text: &str) -> Button {
 }
 
 impl Keyboard {
+    pub fn new() -> Self {
+        Self {
+            input_widget: None,
+            events: Default::default(),
+            upper: false,
+            needed: 0,
+            last_rect: Rect::NOTHING,
+        }
+    }
+
     /// Inject text events into Egui context. This function needs to be called before any widget is
     /// created, otherwise the key presses will be ignored.
     pub fn pump_events(&mut self, ctx: &Context) {
@@ -102,6 +113,8 @@ impl Keyboard {
                 });
 
             if let Some(response) = response {
+                self.last_rect = response.response.rect;
+
                 if response.response.contains_pointer() {
                     // Make sure Egui still thinks that we need the keyboard in the next frame.
                     self.focus_back_to_input_widget(ctx);

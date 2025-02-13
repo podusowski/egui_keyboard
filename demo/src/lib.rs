@@ -12,7 +12,7 @@ impl Default for MyApp {
         Self {
             text: "edit me".to_string(),
             text2: "edit me".to_string(),
-            keyboard: Keyboard::default(),
+            keyboard: Keyboard::new(),
         }
     }
 }
