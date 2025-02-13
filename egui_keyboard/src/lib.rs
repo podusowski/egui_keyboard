@@ -79,7 +79,6 @@ impl Keyboard {
                     // We do not want any spacing between the keys.
                     ui.style_mut().spacing.item_spacing = Vec2::ZERO;
 
-                    #[cfg(target_os = "android")]
                     self.clipboard_button(ui);
 
                     let layout = if self.upper {
@@ -116,7 +115,6 @@ impl Keyboard {
         }
     }
 
-    #[cfg(target_os = "android")]
     fn clipboard_button(&mut self, ui: &mut Ui) {
         if let Some(text) = clipboard::get_text() {
             self.key(ui, &trim_text(&text, 20), Event::Text(text.to_string()));
@@ -188,7 +186,6 @@ impl Keyboard {
 }
 
 /// Trim the text to the maximum length, and add ellipsis if needed.
-#[cfg(target_os = "android")]
 fn trim_text(text: &str, max_length: usize) -> String {
     let mut result = String::new();
     for (n, c) in text.chars().enumerate() {
