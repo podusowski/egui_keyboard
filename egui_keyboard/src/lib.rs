@@ -1,5 +1,6 @@
 #![doc = include_str!("../../README.md")]
 
+mod clipboard;
 mod layouts;
 
 use egui::{
@@ -117,7 +118,7 @@ impl Keyboard {
 
     #[cfg(target_os = "android")]
     fn clipboard_button(&mut self, ui: &mut Ui) {
-        if let Ok(text) = android_clipboard::get_text() {
+        if let Some(text) = clipboard::get_text() {
             self.key(ui, &trim_text(&text, 20), Event::Text(text.to_string()));
             ui.separator();
         }
