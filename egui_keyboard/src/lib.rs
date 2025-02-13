@@ -25,7 +25,7 @@ pub struct Keyboard {
     needed: u32,
 
     /// Last rect where the keyboard was rendered.
-    last_rect: Rect,
+    last_rect: Option<Rect>,
 }
 
 fn heading_button(text: &str) -> Button {
@@ -45,7 +45,7 @@ impl Keyboard {
             events: Default::default(),
             upper: false,
             needed: 0,
-            last_rect: Rect::NOTHING,
+            last_rect: None,
         }
     }
 
@@ -72,10 +72,15 @@ impl Keyboard {
     /// ```
     pub fn safe_rect(&self, ctx: &Context) -> Rect {
         let screen_rect = ctx.screen_rect();
-        Rect::from_min_max(
-            screen_rect.min,
-            screen_rect.max - vec2(0., self.last_rect.height()),
-        )
+
+        if let Some(last_rect) = self.last_rect {
+            Rect::from_min_max(
+                screen_rect.min,
+                screen_rect.max - vec2(0., last_rect.height()),
+            )
+        } else {
+            screen_rect
+        }
     }
 
     /// Shows the virtual keyboard if needed.
@@ -118,7 +123,7 @@ impl Keyboard {
                 });
 
             if let Some(response) = response {
-                self.last_rect = response.response.rect;
+                self.last_rect = Some(response.response.rect);
 
                 if response.response.contains_pointer() {
                     // Make sure Egui still thinks that we need the keyboard in the next frame.
@@ -131,7 +136,7 @@ impl Keyboard {
                 output.ime = None;
             });
         } else {
-            self.last_rect = Rect::NOTHING;
+            self.last_rect = None;
         }
     }
 
