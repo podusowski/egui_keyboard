@@ -62,7 +62,7 @@ impl Keyboard {
     ///
     /// ```no_run
     /// # egui::__run_test_ctx(|ctx| {
-    /// # let keyboard = egui_keyboard::Keyboard::default();
+    /// # let keyboard = egui_keyboard::Keyboard::new();
     /// egui::Window::new("Hello")
     ///   .constrain_to(keyboard.safe_rect(ctx))
     ///   .show(ctx, |ui| {
