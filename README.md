@@ -10,3 +10,8 @@ Because while some small steps were taken, support for a native Android keyboard
 implemented in Winit/Egui stack.
 
 ![Screenshot](https://raw.githubusercontent.com/podusowski/egui_keyboard/refs/heads/main/screenshot.png)
+
+## Features
+
+* Simple QWERTY layout with upper case and lower case letters.
+* Pasting text from clipboard.
