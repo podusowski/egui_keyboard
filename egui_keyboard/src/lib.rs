@@ -15,6 +15,8 @@ enum Key {
     Upper,
 }
 
+/// Main struct for the virtual keyboard. It stores the state of the keyboard and handles the
+/// rendering. Needs to be stored between frames.
 #[derive(Default)]
 pub struct Keyboard {
     input_widget: Option<Id>,
