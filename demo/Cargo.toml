@@ -2,6 +2,7 @@
 name = "demo"
 edition = "2021"
 version.workspace = true
+publish = false
 
 [dependencies]
 eframe.workspace = true
