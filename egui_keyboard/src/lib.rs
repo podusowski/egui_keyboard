@@ -133,7 +133,7 @@ impl Keyboard {
 
     fn clipboard_key(&mut self, ui: &mut Ui) {
         if let Some(text) = clipboard::get_text() {
-            if ui.add(button(&trim_text(&text, 20))).clicked() {
+            if ui.add(button(trim_text(&text, 20))).clicked() {
                 let event = Event::Text(text.to_string());
                 self.events.push_back(event);
                 self.focus_back_to_input_widget(ui.ctx());
