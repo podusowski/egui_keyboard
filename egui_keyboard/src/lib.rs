@@ -89,7 +89,7 @@ impl Keyboard {
                     // We do not want any spacing between the keys.
                     ui.style_mut().spacing.item_spacing = Vec2::ZERO;
 
-                    self.clipboard_button(ui);
+                    self.clipboard_key(ui);
 
                     let layout = if self.upper {
                         layouts::qwerty_upper()
@@ -102,7 +102,7 @@ impl Keyboard {
                             for (n, key) in row.iter().enumerate() {
                                 let ui = &mut columns[n];
                                 ui.vertical_centered_justified(|ui| match key {
-                                    Key::Text(text) => self.generic_key(ui, text),
+                                    Key::Text(text) => self.text_key(ui, text),
                                     Key::Backspace => self.backspace_key(ui),
                                     Key::Upper => self.upper_layout_key(ui),
                                 });
@@ -129,7 +129,7 @@ impl Keyboard {
         }
     }
 
-    fn clipboard_button(&mut self, ui: &mut Ui) {
+    fn clipboard_key(&mut self, ui: &mut Ui) {
         if let Some(text) = clipboard::get_text() {
             if ui.add(button(&trim_text(&text, 20))).clicked() {
                 let event = Event::Text(text.to_string());
@@ -181,7 +181,7 @@ impl Keyboard {
         );
     }
 
-    fn generic_key(&mut self, ui: &mut Ui, text: &str) {
+    fn text_key(&mut self, ui: &mut Ui, text: &str) {
         self.key(ui, text, Event::Text(text.to_string()));
     }
 
