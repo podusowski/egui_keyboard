@@ -1,6 +1,11 @@
 [package]
 name = "egui_keyboard"
-version = "0.1.0"
+version.workspace = true
+repository = "https://github.com/podusowski/egui_keyboard"
+description = "virtual keyboard widget for egui"
+authors = ["Piotr Podusowski <podusowski@gmail.com>"]
+license = "MIT"
+categories = ["gui"]
 edition = "2021"
 
 [dependencies]
