@@ -29,13 +29,11 @@ pub struct Keyboard {
     last_rect: Option<Rect>,
 }
 
-fn heading_button(text: &str) -> Button {
-    let text = WidgetText::from(text).heading();
-    Button::new(text).frame(false).min_size(Vec2::new(10., 40.))
+fn heading_button(text: &str) -> Button<'static> {
+    button(WidgetText::from(text).heading())
 }
 
-fn small_button(text: &str) -> Button {
-    let text = WidgetText::from(text);
+fn button(text: impl Into<WidgetText>) -> Button<'static> {
     Button::new(text).frame(false).min_size(Vec2::new(10., 40.))
 }
 
@@ -133,7 +131,7 @@ impl Keyboard {
 
     fn clipboard_button(&mut self, ui: &mut Ui) {
         if let Some(text) = clipboard::get_text() {
-            if ui.add(small_button(&trim_text(&text, 20))).clicked() {
+            if ui.add(button(&trim_text(&text, 20))).clicked() {
                 let event = Event::Text(text.to_string());
                 self.events.push_back(event);
                 self.focus_back_to_input_widget(ui.ctx());
