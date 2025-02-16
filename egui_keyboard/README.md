@@ -1,6 +1,8 @@
 # Keyboard for Egui
 
 ![made in Europe](https://img.shields.io/badge/made_in-Europe-blue)
+[![crates.io](https://img.shields.io/crates/v/egui_keyboard.svg)](https://crates.io/crates/egui_keyboard)
+[![docs.rs](https://img.shields.io/docsrs/egui_keyboard/latest)](https://docs.rs/egui_keyboard/latest/)
 
 Simple (and quite brutal) replacement for a native Android keyboard for Egui.
 
