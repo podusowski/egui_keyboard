@@ -1,8 +1,9 @@
 #![doc = include_str!("../README.md")]
 
 mod clipboard;
-mod layouts;
+pub mod layouts;
 
+use crate::layouts::KeyboardLayout;
 use egui::{
     vec2, Align2, Button, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui, Vec2, WidgetText,
     Window,
@@ -22,6 +23,7 @@ pub struct Keyboard {
     input_widget: Option<Id>,
     events: VecDeque<Event>,
     upper: bool,
+    keyboard_layout: KeyboardLayout,
 
     /// How much keyboard is needed. It's a number so we can implement this as some sort of
     /// hysteresis to avoid flickering.
@@ -44,6 +46,11 @@ impl Keyboard {
     /// created, otherwise the key presses will be ignored.
     pub fn pump_events(&mut self, ctx: &Context) {
         ctx.input_mut(|input| input.events.extend(std::mem::take(&mut self.events)));
+    }
+
+    pub fn layout(mut self, layout: KeyboardLayout) -> Self {
+        self.keyboard_layout = layout;
+        self
     }
 
     /// Area which is free from the keyboard. This is useful when you want to constrain a window to
@@ -93,13 +100,9 @@ impl Keyboard {
 
                     self.clipboard_key(ui);
 
-                    let layout = if self.upper {
-                        layouts::qwerty_upper()
-                    } else {
-                        layouts::qwerty()
-                    };
+                    let keys = self.keyboard_layout.get_keys(self.upper);
 
-                    for row in layout.iter() {
+                    for row in keys.iter() {
                         ui.columns(row.len(), |columns| {
                             for (n, key) in row.iter().enumerate() {
                                 let ui = &mut columns[n];

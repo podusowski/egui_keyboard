@@ -15,5 +15,5 @@ implemented in Winit/Egui stack.
 
 ## Features
 
-* Simple QWERTY layout with upper case and lower case letters.
+* Simple QWERTY and COLEMAK layout with upper case and lower case letters.
 * Pasting text from clipboard.
