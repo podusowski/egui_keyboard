@@ -3,12 +3,12 @@
 mod clipboard;
 pub mod layouts;
 
+use crate::layouts::KeyboardLayout;
 use egui::{
     vec2, Align2, Button, Context, Event, Frame, Id, Modifiers, Order, Rect, Ui, Vec2, WidgetText,
     Window,
 };
 use std::collections::VecDeque;
-use crate::layouts::KeyboardLayout;
 
 enum Key {
     Text(&'static str),

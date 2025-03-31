@@ -13,11 +13,11 @@ impl Default for KeyboardLayout {
 
 impl KeyboardLayout {
     pub(crate) fn get_keys(&self, uppercase: bool) -> Vec<Vec<Key>> {
-        match (self,uppercase) {
-            (KeyboardLayout::Qwerty, false) => { qwerty() }
-            (KeyboardLayout::Qwerty, true) => { qwerty_upper() }
-            (KeyboardLayout::Colemak, false) => { colemak() }
-            (KeyboardLayout::Colemak, true) => { colemak_upper() }
+        match (self, uppercase) {
+            (KeyboardLayout::Qwerty, false) => qwerty(),
+            (KeyboardLayout::Qwerty, true) => qwerty_upper(),
+            (KeyboardLayout::Colemak, false) => colemak(),
+            (KeyboardLayout::Colemak, true) => colemak_upper(),
         }
     }
 }
