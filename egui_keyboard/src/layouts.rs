@@ -12,7 +12,7 @@ impl Default for KeyboardLayout {
 }
 
 impl KeyboardLayout {
-    pub(crate) fn get_layout(&self, uppercase: bool) -> Vec<Vec<Key>> {
+    pub(crate) fn get_keys(&self, uppercase: bool) -> Vec<Vec<Key>> {
         match (self,uppercase) {
             (KeyboardLayout::Qwerty, false) => { qwerty() }
             (KeyboardLayout::Qwerty, true) => { qwerty_upper() }

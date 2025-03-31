@@ -100,7 +100,7 @@ impl Keyboard {
 
                     self.clipboard_key(ui);
 
-                    let keys = self.keyboard_layout.get_layout( self.upper );
+                    let keys = self.keyboard_layout.get_keys(self.upper);
 
                     for row in keys.iter() {
                         ui.columns(row.len(), |columns| {
