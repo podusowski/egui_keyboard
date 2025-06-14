@@ -38,7 +38,7 @@ fn heading_button(text: &str) -> Button<'static> {
 }
 
 fn button(text: impl Into<WidgetText>) -> Button<'static> {
-    Button::new(text).frame(false).min_size(Vec2::new(10., 40.))
+    Button::new(text).frame(false).min_size(Vec2::new(10., 50.))
 }
 
 impl Keyboard {
