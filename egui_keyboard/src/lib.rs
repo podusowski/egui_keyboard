@@ -86,21 +86,21 @@ impl Keyboard {
         self.remember_input_widget(ctx);
 
         if self.keyboard_input_needed(ctx) {
+            let keys = self.keyboard_layout.get_keys(self.upper);
+
             let response = Window::new("Keyboard")
                 .frame(Frame::NONE.fill(ctx.style().visuals.extreme_bg_color))
                 .collapsible(false)
                 .resizable(false)
                 .title_bar(false)
                 .anchor(Align2::CENTER_BOTTOM, [0., 0.])
-                .fixed_size(vec2(ctx.available_rect().width(), 200.))
+                .fixed_size(vec2(ctx.available_rect().width(), 0.))
                 .order(Order::Foreground)
                 .show(ctx, |ui| {
                     // We do not want any spacing between the keys.
                     ui.style_mut().spacing.item_spacing = Vec2::ZERO;
 
                     self.clipboard_key(ui);
-
-                    let keys = self.keyboard_layout.get_keys(self.upper);
 
                     for row in keys.iter() {
                         ui.columns(row.len(), |columns| {
