@@ -91,8 +91,8 @@ impl Keyboard {
                 .collapsible(false)
                 .resizable(false)
                 .title_bar(false)
-                .anchor(Align2::CENTER_BOTTOM, [0., -5.])
-                .fixed_size(vec2(ctx.available_rect().width() - 10., 200.))
+                .anchor(Align2::CENTER_BOTTOM, [0., 0.])
+                .fixed_size(vec2(ctx.available_rect().width(), 200.))
                 .order(Order::Foreground)
                 .show(ctx, |ui| {
                     // We do not want any spacing between the keys.
