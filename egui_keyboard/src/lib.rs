@@ -1,5 +1,6 @@
 #![doc = include_str!("../README.md")]
 
+#[cfg(feature = "clipboard")]
 mod clipboard;
 pub mod layouts;
 
@@ -100,6 +101,7 @@ impl Keyboard {
                     // We do not want any spacing between the keys.
                     ui.style_mut().spacing.item_spacing = Vec2::ZERO;
 
+                    #[cfg(feature = "clipboard")]
                     self.clipboard_key(ui);
 
                     for row in keys.iter() {
@@ -134,6 +136,7 @@ impl Keyboard {
         }
     }
 
+    #[cfg(feature = "clipboard")]
     fn clipboard_key(&mut self, ui: &mut Ui) {
         if let Some(text) = clipboard::get_text() {
             if ui.add(button(trim_text(&text, 20))).clicked() {
@@ -207,6 +210,7 @@ impl Keyboard {
     }
 }
 
+#[allow(dead_code)]
 /// Trim the text to the maximum length, and add ellipsis if needed.
 fn trim_text(text: &str, max_length: usize) -> String {
     let mut result = String::new();
