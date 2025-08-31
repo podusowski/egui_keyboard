@@ -9,6 +9,7 @@ categories = ["gui"]
 edition = "2021"
 
 [features]
+default = ["clipboard"]
 clipboard = ["dep:android_clipboard", "dep:arboard"]
 
 [dependencies]
