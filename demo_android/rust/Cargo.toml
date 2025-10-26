@@ -8,7 +8,7 @@ publish = false
 log = "0.4"
 android_logger = "0.14"
 eframe.workspace = true
-egui-winit = "0.32"
+egui-winit = "0.33"
 egui_keyboard = { path = "../../egui_keyboard" }
 demo = { path = "../../demo" }
 
