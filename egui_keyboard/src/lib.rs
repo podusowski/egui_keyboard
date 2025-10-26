@@ -70,7 +70,7 @@ impl Keyboard {
     /// # });
     /// ```
     pub fn safe_rect(&self, ctx: &Context) -> Rect {
-        let screen_rect = ctx.screen_rect();
+        let screen_rect = ctx.content_rect();
 
         if let Some(last_rect) = self.last_rect {
             Rect::from_min_max(
