@@ -783,7 +783,7 @@ checksum = "96a6ac251f4a2aca6b3f91340350eab87ae57c3f127ffeb585e92bd336717991"
 
 [[package]]
 name = "demo"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "eframe",
  "egui_keyboard",
@@ -791,7 +791,7 @@ dependencies = [
 
 [[package]]
 name = "demo_android"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "android_logger",
  "demo",
@@ -803,7 +803,7 @@ dependencies = [
 
 [[package]]
 name = "demo_native"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "demo",
  "eframe",
@@ -993,7 +993,7 @@ dependencies = [
 
 [[package]]
 name = "egui_keyboard"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "android_clipboard",
  "arboard",
