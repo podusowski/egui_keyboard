@@ -90,12 +90,12 @@ impl Keyboard {
             let keys = self.keyboard_layout.get_keys(self.upper);
 
             let response = Window::new("Keyboard")
-                .frame(Frame::NONE.fill(ctx.style().visuals.extreme_bg_color))
+                .frame(Frame::NONE.fill(ctx.global_style().visuals.extreme_bg_color))
                 .collapsible(false)
                 .resizable(false)
                 .title_bar(false)
                 .anchor(Align2::CENTER_BOTTOM, [0., 0.])
-                .fixed_size(vec2(ctx.available_rect().width(), 0.))
+                .fixed_size(vec2(ctx.content_rect().width(), 0.))
                 .order(Order::Foreground)
                 .show(ctx, |ui| {
                     // We do not want any spacing between the keys.
