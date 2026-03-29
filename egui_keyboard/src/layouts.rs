@@ -1,14 +1,10 @@
 use super::Key;
 
+#[derive(Default)]
 pub enum KeyboardLayout {
+    #[default]
     Qwerty,
     Colemak,
-}
-
-impl Default for KeyboardLayout {
-    fn default() -> Self {
-        Self::Qwerty
-    }
 }
 
 impl KeyboardLayout {
