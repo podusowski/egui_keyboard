@@ -149,7 +149,7 @@ impl Keyboard {
 
     /// Remember which widget had focus before the keyboard was shown.
     fn remember_input_widget(&mut self, ctx: &Context) {
-        if ctx.wants_keyboard_input() {
+        if ctx.egui_wants_keyboard_input() {
             self.input_widget = ctx.memory(|memory| memory.focused());
         }
     }
@@ -194,7 +194,7 @@ impl Keyboard {
     }
 
     fn keyboard_input_needed(&mut self, ctx: &Context) -> bool {
-        let needed = if ctx.wants_keyboard_input() {
+        let needed = if ctx.egui_wants_keyboard_input() {
             self.needed = 20;
             true
         } else {
