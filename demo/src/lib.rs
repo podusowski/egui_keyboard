@@ -17,7 +17,7 @@ impl Default for MyApp {
 
 impl eframe::App for MyApp {
     fn ui(&mut self, ui: &mut egui::Ui, _: &mut eframe::Frame) {
-        CentralPanel::default().show_inside(ui, |ui| {
+        CentralPanel::default().show(ui, |ui| {
             // Inject text events into Egui context. This function needs to be called before any widget is
             // created, otherwise the key presses will be ignored.
             self.keyboard.pump_events(ui.ctx());

@@ -3,8 +3,8 @@ members = ["egui_keyboard", "demo_android/rust", "demo", "demo_native"]
 resolver = "2"
 
 [workspace.package]
-version = "0.6.0"
+version = "0.7.0"
 
 [workspace.dependencies]
-eframe = { version = "0.34.0", features = ["wgpu", "android-game-activity"] }
-egui = "0.34.0"
+eframe = { version = "0.35.0", features = ["wgpu", "android-game-activity"] }
+egui = "0.35.0"
