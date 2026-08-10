@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.8.0
+
+* `egui` upgraded to 0.36.
+
 ## 0.7.0
 
 * `egui` upgraded to 0.35.
